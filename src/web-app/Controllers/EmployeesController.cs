@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using web_app.Data;
+using web_app.Models;
 
 namespace web_app.Controllers
 {
@@ -16,6 +17,13 @@ namespace web_app.Controllers
         public IActionResult Get()
         {
             return Ok(_employeesRepository.GetAll());
+        }
+
+        [HttpPost]
+        public IActionResult Post(Employee employee)
+        {
+            _employeesRepository.Add(employee);
+            return Created($"/employees/{employee.Id}", employee);
         }
     }
 }
