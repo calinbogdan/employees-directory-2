@@ -45,6 +45,12 @@ namespace web_app
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(policy => {
+                policy.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+            
             app.UseMvc();
         }
     }
