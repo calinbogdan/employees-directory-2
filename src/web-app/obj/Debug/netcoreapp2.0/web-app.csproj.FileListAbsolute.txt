@@ -1,0 +1,10 @@
+D:\Workspaces\employees-directory\src\web-app\bin\Debug\netcoreapp2.0\web-app.deps.json
+D:\Workspaces\employees-directory\src\web-app\bin\Debug\netcoreapp2.0\web-app.runtimeconfig.json
+D:\Workspaces\employees-directory\src\web-app\bin\Debug\netcoreapp2.0\web-app.runtimeconfig.dev.json
+D:\Workspaces\employees-directory\src\web-app\bin\Debug\netcoreapp2.0\web-app.dll
+D:\Workspaces\employees-directory\src\web-app\bin\Debug\netcoreapp2.0\web-app.pdb
+D:\Workspaces\employees-directory\src\web-app\obj\Debug\netcoreapp2.0\web-app.csproj.CoreCompileInputs.cache
+D:\Workspaces\employees-directory\src\web-app\obj\Debug\netcoreapp2.0\web-app.AssemblyInfoInputs.cache
+D:\Workspaces\employees-directory\src\web-app\obj\Debug\netcoreapp2.0\web-app.AssemblyInfo.cs
+D:\Workspaces\employees-directory\src\web-app\obj\Debug\netcoreapp2.0\web-app.dll
+D:\Workspaces\employees-directory\src\web-app\obj\Debug\netcoreapp2.0\web-app.pdb
