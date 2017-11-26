@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using web_app.Models;
 
 namespace web_app.Data
@@ -14,7 +15,8 @@ namespace web_app.Data
         
         public void Add(Employee employee)
         {
-            throw new System.NotImplementedException();
+            _context.Add(employee);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -29,7 +31,7 @@ namespace web_app.Data
 
         public IEnumerable<Employee> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Employees.ToList();
         }
 
         public void Update(int id, Employee employee)

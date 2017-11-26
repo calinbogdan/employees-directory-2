@@ -6,8 +6,8 @@ namespace web_app.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        private readonly EmployeesRepository _employeesRepository;
-        public EmployeesController(EmployeesRepository employeesRepository) 
+        private readonly IEmployeesRepository _employeesRepository;
+        public EmployeesController(IEmployeesRepository employeesRepository) 
         {
             _employeesRepository = employeesRepository;
         } 
