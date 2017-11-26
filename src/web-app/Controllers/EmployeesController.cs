@@ -20,7 +20,7 @@ namespace web_app.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Employee employee)
+        public IActionResult Post([FromBody]Employee employee)
         {
             _employeesRepository.Add(employee);
             return Created($"/employees/{employee.Id}", employee);

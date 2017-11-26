@@ -26,14 +26,12 @@ namespace web_app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddScoped<Context>();
-            
+           
             // repositories
             services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
             // context
-            var connection = "Data Source=CALIN;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";     
+            var connection = "Data Source=CALIN;Initial Catalog=Employees;Integrated Security=True;";     
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
         }
 
@@ -45,12 +43,10 @@ namespace web_app
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(policy => {
-                policy.WithOrigins("http://localhost:3000")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            });
-            
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
+                                          .AllowAnyHeader()
+                                          .AllowAnyMethod());
+
             app.UseMvc();
         }
     }

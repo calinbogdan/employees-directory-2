@@ -11,6 +11,7 @@ class App extends Component {
     }
     this.nameInputChangeHandler = this.nameInputChangeHandler.bind(this);
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
+    this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
   nameInputChangeHandler(event) {
@@ -31,11 +32,12 @@ class App extends Component {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: this.state.name,
-        email: this.state.email
+        email: this.state.email,
+        hiredOn: new Date()
       })
     })
     .then(response => response.json())
@@ -51,7 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Thundrware's Employees Directory</h1>
-        <form>
+        <form onSubmit={this.formSubmitHandler}>
           <input type="text" placeholder="Input name" onChange={this.nameInputChangeHandler} value={this.state.name}/><br/>
           <input type="text" placeholder="Input email" onChange={this.emailInputChangeHandler} value={this.state.email}/><br/>
           <input type="submit" value="Submit"/>
