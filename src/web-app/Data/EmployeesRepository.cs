@@ -5,6 +5,12 @@ namespace web_app.Data
 {
     public class EmployeesRepository : IEmployeesRepository
     {
+
+        private readonly Context _context;
+        public EmployeesRepository(Context context)
+        {
+            _context = context;
+        }
         
         public void Add(Employee employee)
         {
