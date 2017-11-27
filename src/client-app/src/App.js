@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+
+// components
+import EmployeesList from './components/EmployeesList';
 
 class App extends Component {
   
@@ -12,6 +20,7 @@ class App extends Component {
     this.nameInputChangeHandler = this.nameInputChangeHandler.bind(this);
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
+    this.deleteEmployeeButtonClicked = this.deleteEmployeeButtonClicked.bind(this);
   }
 
   // lifecycle methods
@@ -35,6 +44,16 @@ class App extends Component {
   }
 
   // handlers
+
+  deleteEmployeeButtonClicked(employeeId) {
+    fetch(`http://localhost:5000/api/employees/${employeeId}`, {
+      method: 'DELETE'
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    
+  }
 
   nameInputChangeHandler(event) {
     this.setState({
@@ -77,23 +96,25 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-        <h1>Thundrware's Employees Directory</h1>
-        <ul>
-          {this.state.employees.map(employee => {
-            return (<li key={employee.id}>
-                      <h1>Name: {employee.name}</h1>
-                      <h3>Email: {employee.email}</h3>
-                    </li>);
-          })}
-        </ul>
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton color="contrast">
+              <MenuIcon />
+            </IconButton>
+            <Typography type="title" color="inherit">
+              Thundrware's Employees Directory
+            </Typography>
+          </Toolbar>
+        </AppBar>
+          <button onClick={() => this.getEmployees()}>Refresh</button>
+          <EmployeesList employees={this.state.employees}/>
 
-        <form onSubmit={this.formSubmitHandler}>
-          <input type="text" placeholder="Input name" onChange={this.nameInputChangeHandler} value={this.state.name}/><br/>
-          <input type="text" placeholder="Input email" onChange={this.emailInputChangeHandler} value={this.state.email}/><br/>
-          <input type="submit" value="Submit"/>
-        </form>
-        
+          <form onSubmit={this.formSubmitHandler}>
+            <input type="text" placeholder="Input name" onChange={this.nameInputChangeHandler} value={this.state.name}/><br/>
+            <input type="text" placeholder="Input email" onChange={this.emailInputChangeHandler} value={this.state.email}/><br/>
+            <input type="submit" value="Submit"/>
+          </form>
       </div>
     );
   }

@@ -21,12 +21,14 @@ namespace web_app.Data
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            Employee employeeToRemove = Get(id);
+            _context.Remove(employeeToRemove);
+            _context.SaveChanges();
         }
 
         public Employee Get(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Employees.Where(e => e.Id == id).SingleOrDefault();
         }
 
         public IEnumerable<Employee> GetAll()

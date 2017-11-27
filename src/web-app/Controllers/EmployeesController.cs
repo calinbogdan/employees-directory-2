@@ -25,5 +25,18 @@ namespace web_app.Controllers
             _employeesRepository.Add(employee);
             return Created($"/employees/{employee.Id}", employee);
         }
+
+        [HttpPut]
+        public IActionResult Put(int id, [FromBody]Employee employee)
+        {
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _employeesRepository.Delete(id);
+            return NoContent();
+        }
     }
 }
