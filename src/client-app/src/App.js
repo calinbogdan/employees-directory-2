@@ -14,6 +14,28 @@ class App extends Component {
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
+  // lifecycle methods
+
+  componentWillMount() {
+    this.getEmployees();
+  }
+
+
+  // custom functions
+
+  getEmployees() {
+    console.log('Fetching employees...');
+    fetch('http://localhost:5000/api/employees')
+    .then(response => response.json())
+    .then(employeesArray => {
+      this.setState({
+        employees: employeesArray
+      });
+    })
+  }
+
+  // handlers
+
   nameInputChangeHandler(event) {
     this.setState({
       name: event.target.value
@@ -41,8 +63,12 @@ class App extends Component {
       })
     })
     .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson);
+    .then(hiredEmployee => {
+      let newArray = this.state.employees.slice();
+      newArray.push(hiredEmployee);
+      this.setState({
+        employees: newArray
+      });
     })
     .catch(error => {
       console.log(error);
@@ -53,6 +79,15 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Thundrware's Employees Directory</h1>
+        <ul>
+          {this.state.employees.map(employee => {
+            return (<li key={employee.id}>
+                      <h1>Name: {employee.name}</h1>
+                      <h3>Email: {employee.email}</h3>
+                    </li>);
+          })}
+        </ul>
+
         <form onSubmit={this.formSubmitHandler}>
           <input type="text" placeholder="Input name" onChange={this.nameInputChangeHandler} value={this.state.name}/><br/>
           <input type="text" placeholder="Input email" onChange={this.emailInputChangeHandler} value={this.state.email}/><br/>
